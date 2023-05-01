@@ -19,7 +19,7 @@ import java.security.cert.X509Certificate;
 import java.util.Properties;
 
 public class EnrollUser {
-    //拿已有的证书，所以不需要连接CA
+    //Take an existing certificate, so there is no need to connect to the CA
     public static void main(String[] args) throws Exception {
         register2("org2","Org2");
     }
