@@ -32,7 +32,7 @@ public class BlockUtils {
         Contract contract = mychannel.getContract(chaincodeName);
         return contract;
     }
-    //申请存证
+    //Apply for certificate
     public String  createCertificate(String fileID, String applicantID,String userID, String synopsis) throws IOException, ContractException, InterruptedException, TimeoutException, NoSuchAlgorithmException {
         //String createCertificate(final Context ctx, String fileID, String applicantID,String userID, String synopsis)
 //        builder.identity(wallet,identity).networkConfig(ccp).discovery(true);//必须放在方法内 不知道为啥
@@ -51,7 +51,7 @@ public class BlockUtils {
 
     public String updateFiles(String originalFileID,String newFileID,String userID,String applicantID,String synopsis) throws ContractException, InterruptedException, TimeoutException, IOException {
         //String updateFiles(final Context ctx,String originalFileID,String newFileID,String userID,String applicantID,String synopsis)
-        //修改文件,需要添加历史文件ID字段。API里需要对mysql修改
+        //To modify a file, a historical file ID field needs to be added. API needs to modify mysql
         Contract contract = start();
         byte[] bytes = contract.submitTransaction("updateFiles", originalFileID, newFileID, userID, applicantID, synopsis);
         String overcome=new String(bytes);
