@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
 
 /**
- * 计算文件sha256值
+ * Calculate file's sha256 value
  */
 public class CryptoSHA256 {
 
