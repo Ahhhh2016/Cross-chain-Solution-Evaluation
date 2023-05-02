@@ -1,58 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <!-- 日志存放路径 -->
+    <!-- Log storage path -->
     <property name="log.path" value="/usr/qukuailian/"/>
-    <!-- 日志输出格式 -->
+    <!-- log output format -->
     <property name="log.pattern" value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{20} - [%method,%line] - %msg%n"/>
 
-    <!-- 控制台输出 -->
+    <!-- console output -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>${log.pattern}</pattern>
         </encoder>
     </appender>
 
-    <!-- 系统日志输出 -->
+    <!-- syslog output -->
     <appender name="file_info" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${log.path}/sys-info.log</file>
-        <!-- 循环政策：基于时间创建日志文件 -->
+        <!-- Rotation Policy: Create log files based on time -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- 日志文件名格式 -->
+            <!-- log file name format -->
             <fileNamePattern>${log.path}/sys-info.%d{yyyy-MM-dd}.log</fileNamePattern>
-            <!-- 日志最大的历史 60天 -->
+            <!-- Log maximum history 60 days -->
             <maxHistory>60</maxHistory>
         </rollingPolicy>
         <encoder>
             <pattern>${log.pattern}</pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <!-- 过滤的级别 -->
+            <!-- filtering level -->
             <level>INFO</level>
-            <!-- 匹配时的操作：接收（记录） -->
+            <!-- Action on match: Receive (log) -->
             <onMatch>ACCEPT</onMatch>
-            <!-- 不匹配时的操作：拒绝（不记录） -->
+            <!-- Action on Mismatch: Reject (do not log) -->
             <onMismatch>DENY</onMismatch>
         </filter>
     </appender>
 
     <appender name="file_error" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${log.path}/sys-error.log</file>
-        <!-- 循环政策：基于时间创建日志文件 -->
+        <!-- Rotation Policy: Create log files based on time -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- 日志文件名格式 -->
+            <!-- log file name format -->
             <fileNamePattern>${log.path}/sys-error.%d{yyyy-MM-dd}.log</fileNamePattern>
-            <!-- 日志最大的历史 60天 -->
+            <!-- Log maximum history 60 days -->
             <maxHistory>60</maxHistory>
         </rollingPolicy>
         <encoder>
             <pattern>${log.pattern}</pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <!-- 过滤的级别 -->
+            <!-- filtering level -->
             <level>ERROR</level>
-            <!-- 匹配时的操作：接收（记录） -->
+            <!-- Action on match: Receive (log) -->
             <onMatch>ACCEPT</onMatch>
-            <!-- 不匹配时的操作：拒绝（不记录） -->
+            <!-- Action on Mismatch: Reject (do not log) -->
             <onMismatch>DENY</onMismatch>
         </filter>
     </appender>
