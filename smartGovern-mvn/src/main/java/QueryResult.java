@@ -2,10 +2,10 @@ import org.hyperledger.fabric.contract.annotation.DataType;
 import org.hyperledger.fabric.contract.annotation.Property;
 
 /**
- * 智能合约类
+ * Smart Contract Class
  *
- * @author Wangrihao
- * @date 2023/04/14
+ * @author Yixuan Liu
+ * @date 2023/03/14
  */
 
 @DataType
