@@ -57,13 +57,13 @@
         </filter>
     </appender>
 
-    <!-- 用户访问日志输出  -->
+    <!-- User access log output  -->
     <appender name="sys-user" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${log.path}/sys-user.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- 按天回滚 daily -->
+            <!-- rollback daily -->
             <fileNamePattern>${log.path}/sys-user.%d{yyyy-MM-dd}.log</fileNamePattern>
-            <!-- 日志最大的历史 60天 -->
+            <!-- Log maximum history 60 days -->
             <maxHistory>60</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -71,22 +71,22 @@
         </encoder>
     </appender>
 
-    <!-- 系统模块日志级别控制  -->
+    <!-- System module log level control  -->
     <logger name="com.ruoyi" level="info"/>
-    <!-- Spring日志级别控制  -->
+    <!-- Spring log level control  -->
     <logger name="org.springframework" level="warn"/>
 
     <root level="info">
         <appender-ref ref="console"/>
     </root>
 
-    <!--系统操作日志-->
+    <!--system operation log-->
     <root level="info">
         <appender-ref ref="file_info"/>
         <appender-ref ref="file_error"/>
     </root>
 
-    <!--系统用户操作日志-->
+    <!--System user operation log-->
     <logger name="sys-user" level="info">
         <appender-ref ref="sys-user"/>
     </logger>
