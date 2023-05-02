@@ -13,10 +13,9 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 方法
  *
- * @author Wangrihao
- * @date 2023/04/14
+ * @author Yixuan Liu
+ * @date 2023/03/14
  */
 @Contract(
         name = "FabricChainCode",
@@ -35,27 +34,27 @@ public class Method implements ContractInterface {
     Genson genson = new Genson();
 
     /**
-     * 查询数据
+     * Query data
      */
     @Transaction
     public String queryData(final Context ctx, String sno) {
         ChaincodeStub stub = ctx.getStub();
         String state = stub.getStringState(sno);
         if (state.isEmpty()) {
-            System.out.println("没有找到key为：" + sno + "的数据");
+            System.out.println("No data found with key" + sno);
         }
         return state;
     }
 
     /**
-     * 上链数据
+     * Data upchain
      */
     @Transaction
     public String createData(final Context ctx, String sno, String sname, String sex, String age, String college) {
         ChaincodeStub stub = ctx.getStub();
         String state = stub.getStringState(sno);
         if (state.isEmpty()) {
-            System.out.println("数据上链前，没有找到key为：" + sno + "的数据");
+            System.out.println("Before upchain data, no data found with key" + sno);
             QueryResult result = new QueryResult();
             result.setSno(sno);
             result.setSname(sname);
@@ -65,21 +64,21 @@ public class Method implements ContractInterface {
             stub.putStringState(sno, genson.serialize(result));
             return genson.serialize(result);
         } else {
-            System.out.println("链上已有key为：" + sno + "的数据，上链失败");
+            System.out.println("There is already data on the chain whose key is：" + sno + ". Upchain fails.");
             return null;
         }
     }
 
 
     /**
-     * 更新数据
+     * Update data
      */
     @Transaction
     public String updateData(final Context ctx, String sno, String sname, String sex, String age, String college) {
         ChaincodeStub stub = ctx.getStub();
         String state = stub.getStringState(sno);
         if (!state.isEmpty()) {
-            System.out.println("数据修改前，找到key为：" + sno + "的数据");
+            System.out.println("Before data modification, find the data whose key is：" + sno);
             QueryResult result = new QueryResult();
             result.setSno(sno);
             result.setSname(sname);
@@ -89,20 +88,20 @@ public class Method implements ContractInterface {
             stub.putStringState(sno, genson.serialize(result));
             return genson.serialize(result);
         } else {
-            System.out.println("数据修改前，没有找到key为：" + sno + "的数据");
+            System.out.println("Before data modification, not find the data whose key is：" + sno);
             return null;
         }
     }
 
     /**
-     * 删除数据
+     * Delete data
      */
     @Transaction
     public String deleteData(final Context ctx, String sno) {
         ChaincodeStub stub = ctx.getStub();
         String state = stub.getStringState(sno);
         if (state.isEmpty()) {
-            System.out.println("没有找到key为：" + sno + "的数据");
+            System.out.println("No data found with key " + sno);
             return "false";
         } else {
             stub.delState(sno);
@@ -111,7 +110,7 @@ public class Method implements ContractInterface {
     }
 
     /**
-     * 溯源
+     * Trace the source
      */
     @Transaction
     public List<Map<String, Object>> getHistory(final Context ctx, String key) {
